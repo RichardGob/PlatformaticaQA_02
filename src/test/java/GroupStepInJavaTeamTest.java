@@ -92,11 +92,11 @@ public class GroupStepInJavaTeamTest {
     }
 
     @Test
-    public void testHaidukLibrary() {
+    public void testHaidukLibrary() throws InterruptedException {
         driver.get("https://www.merriam-webster.com/");
+        Thread.sleep(10000);
         driver.findElement(By.id("s-term")).sendKeys("anything");
         driver.findElement(By.className("search-icon")).click();
-        driver.findElement(By.className("learn-more-header"));
         Assert.assertEquals(driver.findElement(By.className("learn-more-header")).getText(),
                 "Learn More about anything");
     }
