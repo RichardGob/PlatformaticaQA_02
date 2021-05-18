@@ -9,24 +9,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class GroupAlmondSkyTest {
-
-    @BeforeClass
-    public void before() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    private WebDriver driver;
-
-    @BeforeMethod
-    public void beforeTest() {
-        driver = new ChromeDriver();
-    }
+public class GroupAlmondSkyTest extends Utility {
 
     @Test
-    public void tatianaChuevaTest() throws InterruptedException {
+    public void testTatianaChueva() throws InterruptedException {
 
-        String expectedResultPageHeader = "CONTACT US";
+        final String expectedResultPageHeader = "CONTACT US";
 
         driver.get("https://www.loganparkapartments.com/");
 
@@ -36,7 +24,9 @@ public class GroupAlmondSkyTest {
         WebElement pushMenu = driver.findElement(By.xpath("//div[@id='menuHeader']"));
         pushMenu.click();
         Thread.sleep(3000);
-        WebElement inputContactButton = driver.findElement(By.xpath("//div[@id='mainNavHeader']/ul[@id='menuElem']/li[@class='contact']/a[@href='/Contact.aspx']"));
+
+        WebElement inputContactButton = driver.findElement(
+                By.xpath("//div[@id='mainNavHeader']/ul[@id='menuElem']/li[@class='contact']/a[@href='/Contact.aspx']"));
         inputContactButton.click();
 
         WebElement pageHeader = driver.findElement(By.xpath("//h1[@class='pageHeader']"));
@@ -55,10 +45,5 @@ public class GroupAlmondSkyTest {
         WebElement result = driver.findElement(By.className("page-title"));
 
         Assert.assertEquals(result.getText(), "PLANT SERVICES");
-    }
-
-    @AfterMethod
-    public void afterTest() {
-        driver.quit();
     }
 }
